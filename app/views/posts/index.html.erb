@@ -1,0 +1,65 @@
+
+<h1>Books</h1>
+
+
+<table>
+   <tr>
+ 	 <th>taitle</th>
+ 	 <th>body</th>
+   </tr>
+
+    <tbody>
+      <% @posts.each do |post| %>
+      <tr>
+      <td>
+      <%= post.title %>
+      </td>
+
+      <td>
+      <%= post.body %>
+      </td>
+      <td>
+      	<%=link_to post.title="show", "/posts/#{post.id}" %>
+      </td>
+      <td>
+      <%= link_to "edit", edit_post_path(post.id) %>
+      </td>
+      <td>
+       <%= link_to "Destroy", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </td>
+
+      <tr>
+
+<% end %>
+    </tbody>
+</table>
+
+
+
+<h2>New book</h2>
+
+ <!-- form_for部分 -->
+<%= form_for(@post) do |f| %>
+
+<% if @post.errors.any? %>
+<%#= binding.pry %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+    <h4>title</h4>
+    <%= f.text_field :title %>
+ 
+    <h4>body</h4>
+    <%= f.text_area :body %>
+    <br>
+ 
+    <%= f.submit 'Create Book' %>
+
+
+<% end %>

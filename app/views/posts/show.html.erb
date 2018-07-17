@@ -15,8 +15,8 @@ body
 </h4>
 
 
-<%= link_to "edit", edit_post_path(@post.id) %>
+<%= link_to "edit", edit_post_path(@post.id), class: "edit_#{@post.id}" %>
 
 |
 
-<%= link_to 'back', :back %>
+<%= link_to 'back', :back, class: "back" %>
